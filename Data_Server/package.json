@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "commander": "^4.1.0",
+    "firebase-admin": "^8.9.0",
+    "mqtt": "^3.0.0",
+    "path": "^0.12.7"
+  }
+}

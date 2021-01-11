@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <title>iPortfolio Bootstrap Template - Index</title>
+
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon" />
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="vendor/venobox/venobox.css" rel="stylesheet" />
+    <link href="vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="vendor/aos/aos.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFC-SKu9kx2_P_u7v-rOZjH94rFsZjdTk"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  </head>
+
+  <body>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+      <div class="d-flex flex-column">
+        <div class="profile">
+          <img src="img/123.png" alt="" class="img-fluid rounded-circle" />
+          <h1 class="text-light"><a href="index.html">偵測物品位置系統</a></h1>
+          <div class="social-links mt-3 text-center">
+            <a href="#" style="background-color: green; opacity:0.3;"></a>
+            <a href="#" style="background-color: yellow; opacity:0.3;"></a>
+            <a href="#" style="background-color: red; opacity:0.3;"></a>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <ul>
+            <script>
+              const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                  window.requestAnimationFrame(scrollToTop);
+                  window.scrollTo(0, c - c / 8);
+                }
+              };
+            </script>
+            <li class="active">
+              <a href="index.html" onclick="scrollToTop()"><i class="bx bx-home"></i> <span>主頁</span></a>
+            </li>
+            <li>
+              <a href="#about"><i class="bx bx-user"></i> <span>物品偵測</span></a>
+            </li>
+            <li>
+              <a href="#resume"><i class="bx bx-file-blank"></i> <span>遺失位置統計</span></a>
+            </li>
+            <li>
+              <a href="#portfolio"><i class="bx bx-book-content"></i>遺失時間統計</a>
+            </li>
+            <li>
+              <a href="#services"><i class="bx bx-server"></i>遺失物品統計</a>
+            </li>
+            <!--<li><a href="#contact"><i class="bx bx-envelope"></i> Contact</a></li>-->
+          </ul>
+        </nav>
+        <!-- .nav-menu -->
+        <button type="button" class="mobile-nav-toggle d-xl-none"><i class="icofont-navigation-menu"></i></button>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+      <div class="hero-container" data-aos="fade-in">
+        <h1>FXXk my life</h1>
+        <p>Where <span class="typed" data-typed-items="are my keys?,is my money?,is my girlfriend?,is my credit card?"></span></p>
+      </div>
+    </section>
+    <!-- End Hero -->
+
+    <main id="main">
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+        <div class="container">
+          <div class="section-title">
+            <h2>物品偵測</h2>
+          </div>
+          <div id="dynamicMap" style="width:100%;height:400px;"></div>
+        </div>
+      </section>
+      <!-- End About Section -->
+
+      <!-- ======= Resume Section ======= -->
+      <section id="resume" class="resume">
+        <div class="container">
+          <div class="section-title">
+            <h2>遺失位置統計</h2>
+          </div>
+          <div id="staticMap" style="width:100%;height:400px;"></div>
+        </div>
+      </section>
+      <!-- End Resume Section -->
+
+      <!-- ======= Portfolio Section ======= -->
+      <section id="portfolio" class="portfolio">
+        <div class="container">
+          <div class="section-title">
+            <h2>遺失時間統計</h2>
+            <div id="chartContainer" style="height: 400px; width: 90%;"></div>
+          </div>
+
+          <script type="text/javascript">
+            window.onload = function() {
+              var chart = new CanvasJS.Chart("chartContainer", {
+                data: [
+                  {
+                    dataPoints: [
+                      { x: 1, y: 2, label: "00:00~03:00" },
+                      { x: 2, y: 1, label: "03:00~06:00" },
+                      { x: 3, y: 0, label: "06:00~09:00" },
+                      { x: 4, y: 3, label: "09:00~12:00" },
+                      { x: 5, y: 8, label: "12:00~15:00" },
+                      { x: 6, y: 11, label: "15:00~18:00" },
+                      { x: 7, y: 9, label: "18:00~21:00" },
+                      { x: 8, y: 4, label: "21:00~24:00" }
+                    ]
+                  }
+                ]
+              });
+              chart.render();
+            };
+          </script>
+          <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </div>
+      </section>
+      <!-- End Portfolio Section -->
+
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services">
+        <div class="container">
+          <div class="section-title">
+            <h2>遺失物品統計</h2>
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+          </div>
+
+          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+          <script type="text/javascript">
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+                ["Item", "how much"],
+                ["Mobilephone", 11],
+                ["Keys", 2],
+                ["Money", 2],
+                ["Girlfriend", 4]
+              ]);
+
+              var options = {};
+
+              var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+
+              chart.draw(data, options);
+            }
+          </script>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- build:js -->
+
+    <!-- Vendor JS Files -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="vendor/php-email-form/validate.js"></script>
+    <script src="vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="vendor/counterup/counterup.min.js"></script>
+    <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="vendor/venobox/venobox.min.js"></script>
+    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="vendor/typed.js/typed.min.js"></script>
+    <script src="vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="js/main.js"></script>
+
+    <!-- endbuild -->
+  </body>
+</html>
