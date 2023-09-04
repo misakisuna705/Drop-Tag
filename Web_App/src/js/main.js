@@ -43,12 +43,72 @@ function main() {
     streetViewControl: true
   };
 
+  const markers = [];
+
+  //24.795653, 120.991983 台達館
+  //24.795661, 120.991424 籃球場
+  //24.794823, 120.991440 健身房
+  //24.792262, 120.994002 水木餐廳
+  //24.791729, 120.994087 華齋
+  //24.795544, 120.994239 圖書館
+  //24.794971, 120.992460 資電館
+
+  const gMap = google.maps;
+
   const dynamicMapDom = document.getElementById("dynamicMap");
   const staticMapDom = document.getElementById("staticMap");
 
-  const gMap = google.maps;
   const dynamicMap = new gMap.Map(dynamicMapDom, mapConfig);
   const staticMap = new gMap.Map(staticMapDom, mapConfig);
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "台達館",
+    position: { lat: 24.795653, lng: 120.991983 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "籃球場",
+    position: { lat: 24.795661, lng: 120.991424 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "健身房",
+    position: { lat: 24.794823, lng: 120.99144 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "水木餐廳",
+    position: { lat: 24.792262, lng: 120.994002 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "華齋",
+    position: { lat: 24.791729, lng: 120.994087 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "圖書館",
+    position: { lat: 24.795544, lng: 120.994239 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/green.png"
+  });
+
+  markers[1] = new gMap.Marker({
+    map: staticMap,
+    title: "資電館",
+    position: { lat: 24.794971, lng: 120.99246 },
+    icon: "https://maps.google.com/mapfiles/ms/micons/black.png"
+  });
 
   const firestore = firebase.firestore();
   const gpsCollection = firestore.collection("GPS");
